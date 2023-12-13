@@ -52,6 +52,8 @@ namespace Guloso
             {
                 Console.WriteLine("Largura: {0}, Altura: {1}, Tamanho: {2}", container.largura, container.altura, container.largura * container.altura);
             }
+
+            Console.ReadLine();
         }
 
         // Função para resolver o problema de bin packing com paradigma guloso

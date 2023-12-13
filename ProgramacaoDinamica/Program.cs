@@ -1,87 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProgramacaoDinamica
+class Container
 {
-    public class Navio
-    {
-        public int Largura { get; set; }
-        public int Comprimento { get; set; }
+    public int Width { get; }
+    public int Length { get; }
 
-        public Navio(int largura, int comprimento)
-        {
-            Largura = largura;
-            Comprimento = comprimento;
-        }
+    public Container(int width, int length)
+    {
+        Width = width;
+        Length = length;
     }
+}
 
-    public class Container
+class BinPacking
+{
+    static int MinShips(List<Container> containers, int shipWidth, int shipLength)
     {
-        public int Largura { get; set; }
-        public int Comprimento { get; set; }
+        containers.Sort((a, b) => b.Length.CompareTo(a.Length)); // Ordena os containers por comprimento em ordem decrescente
 
-        public Container(int largura, int comprimento)
+        int nContainers = containers.Count;
+        int nShips = 0;
+        List<int> remainingWidth = new List<int> { shipWidth };
+        List<int> remainingLength = new List<int> { shipLength };
+
+        for (int i = 0; i < nContainers; i++)
         {
-            Largura = largura;
-            Comprimento = comprimento;
-        }
-    }
+            bool placed = false;
 
-    public class BinPackingDP
-    {
-        public static int Resolver(Navio navio, List<Container> containers)
-        {
-            // Matriz de soluções
-            int[,] solucoes = new int[navio.Largura + 1, navio.Comprimento + 1];
-
-            // Preenchendo a matriz de soluções
-            for (int i = 0; i <= navio.Largura; i++)
+            for (int j = 0; j <= nShips; j++)
             {
-                for (int j = 0; j <= navio.Comprimento; j++)
+                if (containers[i].Width <= remainingWidth[j] && containers[i].Length <= remainingLength[j])
                 {
-                    // Se o navio estiver vazio, a solução é 0
-                    if (i == 0 || j == 0)
-                    {
-                        solucoes[i, j] = 0;
-                    }
-                    // Se o container não cabe no navio, a solução é a mesma da célula anterior
-                    else if (containers[i].Largura > i || containers[i].Comprimento > j)
-                    {
-                        solucoes[i, j] = solucoes[i - 1, j];
-                    }
-                    // Se o container cabe no navio, a solução é a menor entre:
-                    // 1 - A solução da célula anterior
-                    // 2 - A solução da célula (i - containers[i].Largura, j - containers[i].Comprimento) + 1 (adicionando o container)
-                    else
-                    {
-                        solucoes[i, j] = Math.Min(solucoes[i - 1, j], solucoes[i - containers[i].Largura, j - containers[i].Comprimento] + 1);
-                    }
+                    remainingWidth[j] -= containers[i].Width;
+                    remainingLength[j] -= containers[i].Length;
+                    placed = true;
+                    break;
                 }
             }
 
-            // Retorna a solução
-            return solucoes[navio.Largura, navio.Comprimento];
+            if (!placed)
+            {
+                nShips++;
+                remainingWidth.Add(shipWidth - containers[i].Width);
+                remainingLength.Add(shipLength - containers[i].Length);
+            }
         }
+
+        return nShips;
     }
 
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        List<Container> containers = new List<Container>
         {
-            // Navio
-            Navio navio = new Navio(10, 10);
+            new Container(2, 3),
+            new Container(1, 2),
+            new Container(3, 4),
+            new Container(2, 2),
+            new Container(1, 1)
+        };
 
-            // Containers
-            List<Container> containers = new List<Container>();
-            containers.Add(new Container(5, 5));
-            containers.Add(new Container(3, 3));
-            containers.Add(new Container(2, 2));
+        int shipWidth = 5;
+        int shipLength = 5;
 
-            // Resolvendo o problema
-            int solucao = BinPackingDP.Resolver(navio, containers);
-
-            // Imprimindo a solução
-            Console.WriteLine("Solução: {0}", solucao);
-        }
+        int result = MinShips(containers, shipWidth, shipLength);
+        Console.WriteLine($"Número mínimo de navios necessários: {result}");
+        Console.ReadLine();
     }
 }

@@ -1,0 +1,7 @@
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\bin\Debug\ProgramacaoDinamica.exe.config
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\bin\Debug\ProgramacaoDinamica.exe
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\bin\Debug\ProgramacaoDinamica.pdb
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\obj\Debug\ProgramacaoDinamica.csproj.AssemblyReference.cache
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\obj\Debug\ProgramacaoDinamica.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\obj\Debug\ProgramacaoDinamica.exe
+C:\Users\Lucas\Desktop\binpacking\ProgramacaoDinamica\obj\Debug\ProgramacaoDinamica.pdb

@@ -1,0 +1,7 @@
+C:\Users\Lucas\Desktop\binpacking\Guloso\bin\Debug\Guloso.exe.config
+C:\Users\Lucas\Desktop\binpacking\Guloso\bin\Debug\Guloso.exe
+C:\Users\Lucas\Desktop\binpacking\Guloso\bin\Debug\Guloso.pdb
+C:\Users\Lucas\Desktop\binpacking\Guloso\obj\Debug\Guloso.csproj.AssemblyReference.cache
+C:\Users\Lucas\Desktop\binpacking\Guloso\obj\Debug\Guloso.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Desktop\binpacking\Guloso\obj\Debug\Guloso.exe
+C:\Users\Lucas\Desktop\binpacking\Guloso\obj\Debug\Guloso.pdb
